@@ -1,15 +1,129 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <shellapi.h>
+#include <mmsystem.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string>
+
+using namespace std;
 
 #define ID_DECLINE 110
 #define ID_ACCEPT 111
 
+char numRestarts = '0';
+char stage = '0';
+DWORD timeLeft = 12300;
+string strTable[12];
 HWND hwndDecline;
 HWND hwndAccept;
 HWND hwndText;
 HDC hDCMem;
 HFONT hFont;
+
+BOOL WINAPI CtrlHandler(DWORD dwCtrlType)
+{
+	char params[8];
+	if (dwCtrlType == CTRL_CLOSE_EVENT ||
+		dwCtrlType == CTRL_LOGOFF_EVENT ||
+		dwCtrlType == CTRL_SHUTDOWN_EVENT)
+	{
+		numRestarts++;
+		sprintf(params, "5%c%c%u", numRestarts, stage, timeLeft);
+		ShellExecute(NULL, "open",
+			"C:\\Documents and Settings\\Christopher\\My Documents\\SpyCorp\\webagr.exe",
+			params, NULL, SW_SHOWDEFAULT);
+		ExitProcess(1);
+	}
+	return TRUE;
+}
+
+void CountdownStage(DWORD duration, HANDLE hConOut)
+{
+	COORD dwPos;
+	if (numRestarts == '0')
+	{
+		dwPos.X = 16;
+		dwPos.Y = 3;
+	}
+	else
+	{
+		dwPos.X = 16;
+		dwPos.Y = 2;
+	}
+
+	DWORD lastTime = timeGetTime();
+	while (true)
+	{
+		DWORD curTime = timeGetTime();
+		if (curTime - lastTime >= duration)
+		{
+			timeLeft -= duration;
+			break;
+		}
+		else
+		{
+			char numBuf[5];
+			DWORD charsWritten;
+			sprintf(numBuf, "%u", timeLeft - (curTime - lastTime));
+			WriteConsoleOutputCharacter(hConOut, numBuf, 5, dwPos, &charsWritten);
+		}
+	}
+}
+
+void SCIUpMain()
+{
+	HANDLE hConIn;
+	HANDLE hConOut;
+	COORD dwSize = { 80, 25 };
+	DWORD bytesWritten;
+
+	AllocConsole();
+	hConIn = GetStdHandle(STD_INPUT_HANDLE);
+	hConOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCtrlHandler(CtrlHandler, TRUE);
+	SetConsoleTitle("sciup");
+	SetConsoleScreenBufferSize(hConOut, dwSize);
+
+	if (stage != '0') //tried to exit
+	{
+		WriteFile(hConOut, strTable[4].c_str(), strTable[4].length(), &bytesWritten, NULL);
+		WriteFile(hConOut, strTable[5].c_str(), strTable[5].length(), &bytesWritten, NULL);
+	}
+	switch (stage)
+	{
+	case '0':
+		WriteFile(hConOut, strTable[3].c_str(), strTable[3].length(), &bytesWritten, NULL);
+		WriteFile(hConOut, strTable[5].c_str(), strTable[5].length(), &bytesWritten, NULL);
+		stage++;
+	case '1':
+		WriteFile(hConOut, strTable[6].c_str(), strTable[6].length(), &bytesWritten, NULL);
+		CountdownStage(3000, hConOut);
+		stage++;
+	case '2':
+		WriteFile(hConOut, strTable[7].c_str(), strTable[7].length(), &bytesWritten, NULL);
+		CountdownStage(250, hConOut);
+		stage++;
+	case '3':
+		WriteFile(hConOut, strTable[8].c_str(), strTable[8].length(), &bytesWritten, NULL);
+		CountdownStage(2500, hConOut);
+		stage++;
+	case '4':
+		WriteFile(hConOut, strTable[9].c_str(), strTable[9].length(), &bytesWritten, NULL);
+		CountdownStage(500, hConOut);
+		stage++;
+	case '5':
+		WriteFile(hConOut, strTable[10].c_str(), strTable[10].length(), &bytesWritten, NULL);
+		CountdownStage(6000, hConOut);
+		stage++;
+	case '6':
+		WriteFile(hConOut, strTable[11].c_str(), strTable[11].length(), &bytesWritten, NULL);
+		CountdownStage(50, hConOut);
+		FreeConsole();
+		ShellExecute(NULL, "open", strTable[12].c_str(), NULL, NULL, SW_SHOWDEFAULT);
+	}
+}
 
 LRESULT CALLBACK TextWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -34,19 +148,7 @@ LRESULT CALLBACK TextWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		SelectObject(hdc, hFont);
 		SetBkMode(hdc, TRANSPARENT);
 		BitBlt(hdc, 325, 0, 725, 400, hDCMem, 0, 0, SRCCOPY);
-		DrawText(hdc,
-"YOU MUST AGREE TO THE FOLOWING TERMS TO ACCESS THIS WEBSITE:\n\
-	    1. Spy Corp. owns ANY AND ALL products you make on this computer.\n\
-	    2. Spy Corp. is NOT RESPONSIBLE for any damage caused to your computer by use of this website.\n\
-	    3. Spy Corp. DOES NOT need your permission to take files from your computer.\n\
-	    4. Your life is no longer private once you agree to these rules.\n\
-	    5. You have given Spy Corp. permission to know what you are doing at any given time.\n\
-	    6. If you copy any information from this website, Spy Corp. will assassinate you.\n\
-	    7. If you attempt to hack into any of our computers, YOU WILL BE ASSASSINATED.\n\
-	    8. Spy Corp. can bring you in for interrogation at ANY TIME.\n\
-	    9. Spy Corp. is allowed to use your house as a base of operations WITHOUT YOUR KNOWLEDGE.\n\
-	    10. These rules DO NOT violate your freedoms, rights, and/or responsibilities.",
-			889, &rt, DT_LEFT);
+		DrawText(hdc, strTable[1].c_str(), strTable[1].length(), &rt, DT_LEFT);
 		EndPaint(hwnd, &ps);
 		break;
 	}
@@ -61,20 +163,8 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		break;
 
 	case WM_KEYDOWN:
-		int fwKeys;
-		LPARAM keyData;
-		fwKeys = (int)wParam;    // virtual-key code 
-		keyData = lParam;          // key data 
-
-		switch(fwKeys)
-		{
-		case VK_RETURN:
+		if ((int)wParam == VK_RETURN)
 			PostMessage(hwnd, WM_COMMAND, ID_DECLINE, 0);
-			break;
-		default:
-			break;
-		}
-
 		break;
 
 	case WM_COMMAND:
@@ -82,7 +172,8 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 		{
 		case ID_DECLINE:
 		case ID_ACCEPT:
-			ShellExecute(NULL, "open", "C:\\Documents and Settings\\Christopher\\My Documents\\SpyCorp\\SCI_Webpage.doc", NULL, NULL, SW_SHOWDEFAULT);
+			ShowWindow(hwnd, SW_HIDE);
+			SCIUpMain();
 			PostQuitMessage(0);
 			break;
 		}
@@ -137,7 +228,7 @@ LRESULT CALLBACK MainWindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
-int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+int ShowWebAgr(HINSTANCE hInstance)
 {
 	HWND hwnd;
 	WNDCLASS wndclass;
@@ -167,4 +258,33 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	}
 
 	return (int)msg.wParam;
+}
+
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+{
+	int i;
+	TCHAR buffer[1024];
+	int msgwParam;
+
+	//Load the string table.
+	for (i = 1; i < 13; i++)
+	{
+		LoadString(hInstance, i, buffer, 1024);
+		strTable[i] = buffer;
+	}
+
+	//Check if sciup should be restarted.
+	if (lpCmdLine[0] == '5')
+	{
+		lpCmdLine++;
+		numRestarts = *lpCmdLine++;
+		stage = *lpCmdLine++;
+		timeLeft = atoi(lpCmdLine);
+		SCIUpMain();
+		return 0;
+	}
+
+	msgwParam = ShowWebAgr(hInstance);
+
+	return 0;
 }
