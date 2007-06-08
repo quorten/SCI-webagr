@@ -120,8 +120,15 @@ void SCIUpMain()
 	case '6':
 		WriteFile(hConOut, strTable[11].c_str(), strTable[11].length(), &bytesWritten, NULL);
 		CountdownStage(50, hConOut);
+		MessageBox(NULL, "Sorry, you cannot access\n\
+Spy Corp. International's\n\
+website. Sharing Violation.", "Extended Error", MB_OK | MB_ICONERROR);
+		MessageBox(NULL, "You will not be able to access\n\
+this website without proper\n\
+permission from the current\n\
+business partner you are using.", "Access Error", MB_OK | MB_ICONEXCLAMATION);
 		FreeConsole();
-		ShellExecute(NULL, "open", strTable[12].c_str(), NULL, NULL, SW_SHOWDEFAULT);
+		//ShellExecute(NULL, "open", strTable[12].c_str(), NULL, NULL, SW_SHOWDEFAULT);
 	}
 }
 
