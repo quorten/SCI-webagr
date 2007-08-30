@@ -30,7 +30,7 @@ BOOL WINAPI CtrlHandler(DWORD dwCtrlType)
 		dwCtrlType == CTRL_SHUTDOWN_EVENT)
 	{
 		numRestarts++;
-		sprintf(params, "5%c%c%u", numRestarts, stage, timeLeft);
+		sprintf(params, "\x05%c%c%u", numRestarts, stage, timeLeft);
 		ShellExecute(NULL, "open",
 			"C:\\Documents and Settings\\Christopher\\My Documents\\SpyCorp\\webagr.exe",
 			params, NULL, SW_SHOWDEFAULT);
@@ -93,7 +93,7 @@ void SCIUpMain()
 	}
 	switch (stage)
 	{
-	case '0':
+	//case '0':
 		WriteFile(hConOut, strTable[3].c_str(), strTable[3].length(), &bytesWritten, NULL);
 		WriteFile(hConOut, strTable[5].c_str(), strTable[5].length(), &bytesWritten, NULL);
 		stage++;
@@ -118,6 +118,7 @@ void SCIUpMain()
 		CountdownStage(6000, hConOut);
 		stage++;
 	case '6':
+	default:
 		WriteFile(hConOut, strTable[11].c_str(), strTable[11].length(), &bytesWritten, NULL);
 		CountdownStage(50, hConOut);
 		MessageBox(NULL, "Sorry, you cannot access\n\
@@ -281,7 +282,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	}
 
 	//Check if sciup should be restarted.
-	if (lpCmdLine[0] == '5')
+	if (lpCmdLine[0] == '\x05')
 	{
 		lpCmdLine++;
 		numRestarts = *lpCmdLine++;
