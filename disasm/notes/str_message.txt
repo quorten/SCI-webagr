@@ -1,0 +1,22 @@
+open
+C:\Documents and Settings\Christopher\My Documents\SpyCorp\webagr.exe
+%c%c%u
+
+You will not be able to access
+this website without proper
+permission from the current
+business partner you are using.
+Access Error
+Sorry, you cannot access
+Spy Corp. International's
+website. Sharing Violation.
+
+sciup
+#101
+I Accept
+I Decline
+BUTTON
+spy
+spytxt
+MS SANS SERIF
+Spy Corp. International

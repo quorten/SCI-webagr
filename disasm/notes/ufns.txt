@@ -1,0 +1,7 @@
+4012e0: CtrlHandler
+4013d0: CountdownStage
+4014e0: SCIUpMain
+401970: TextWindowProc
+401bd0: MainWindowProc
+402060: REGULAR WinMain
+4021e0: OFFICIAL WinMain, LoadStrTable and check command line
