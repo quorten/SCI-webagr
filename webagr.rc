@@ -1,91 +1,17 @@
-//Microsoft Developer Studio generated resource script.
-//
-#include "resource.h"
-
-#define APSTUDIO_READONLY_SYMBOLS
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 2 resource.
-//
-#include "afxres.h"
-
-/////////////////////////////////////////////////////////////////////////////
-#undef APSTUDIO_READONLY_SYMBOLS
-
-/////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
-LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-#pragma code_page(1252)
-#endif //_WIN32
-
-#ifdef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// TEXTINCLUDE
-//
-
-1 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
-END
-
-3 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
-
-IDB_BITMAP1             BITMAP  DISCARDABLE     "SCI Logo.bmp"
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// String Table
-//
+101   BITMAP DISCARDABLE     "SCI_Logo.bmp"
+102   ICON DISCARDABLE       "SCI_Logo.ico"
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    1                       "YOU MUST AGREE TO THE FOLOWING TERMS TO ACCESS THIS WEBSITE:\n\t    1. Spy Corp. owns ANY AND ALL products you make on this computer.\n\t    2. Spy Corp. is NOT RESPONSIBLE for any damage caused to your computer by use of this website.\n\t    3. Spy Corp. DOES NOT need your permission to take files from your computer.\n\t    4. Your life is no longer private once you agree to these rules.\n\t    5. You have given Spy Corp. permission to know what you are doing at any given time.\n\t    6. If you copy any information from this website, Spy Corp. will assassinate you.\n\t    7. If you attempt to hack into any of our computers, YOU WILL BE ASSASSINATED.\n\t    8. Spy Corp. can bring you in for interrogation at ANY TIME.\n\t    9. Spy Corp. is allowed to use your house as a base of operations WITHOUT YOUR KNOWLEDGE.\n\t    10. These rules DO NOT violate your freedoms, rights, and/or responsibilities."
-    3                       "Spy Corp International(R) updater.\nVersion unavalable.\n"
-    4                       "There was an attempt to termintate the downloader. Continuing...\n"
-    5                       "\nTime remaining:       milliseconds\n"
-    6                       "downloading files"
-    7                       "\nupdating viewers"
-    8                       "\nloading old records"
-    9                       "\nchecking antivirus"
-    10                      "\nreinitializing viruscan IME, this may take a while"
-    11                      "\nplease wait while disabling profile checkers"
-    12                      "C:\\Documents and Settings\\Christopher\\My Documents\\SpyCorp\\SCI_Webpage.doc"
+    1   "YOU MUST AGREE TO THE FOLOWING TERMS TO ACCESS THIS WEBSITE:\n\t    1. Spy Corp. owns ANY AND ALL products you make on this computer.\n\t    2. Spy Corp. is NOT RESPONSIBLE for any damage caused to your computer by use of this website.\n\t    3. Spy Corp. DOES NOT need your permission to take files from your computer.\n\t    4. Your life is no longer private once you agree to these rules.\n\t    5. You have given Spy Corp. permission to know what you are doing at any given time.\n\t    6. If you copy any information from this website, Spy Corp. will assassinate you.\n\t    7. If you attempt to hack into any of our computers, YOU WILL BE ASSASSINATED.\n\t    8. Spy Corp. can bring you in for interrogation at ANY TIME.\n\t    9. Spy Corp. is allowed to use your house as a base of operations WITHOUT YOUR KNOWLEDGE.\n\t    10. These rules DO NOT violate your freedoms, rights, and/or responsibilities."
+    3   "Spy Corp International(R) updater.\nVersion unavalable.\n"
+    4   "There was an attempt to termintate the downloader. Continuing...\n"
+    5   "\nTime remaining:       milliseconds\n"
+    6   "downloading files"
+    7   "\nupdating viewers"
+    8   "\nloading old records"
+    9   "\nchecking antivirus"
+    10  "\nreinitializing viruscan IME, this may take a while"
+    11  "\nplease wait while disabling profile checkers"
+    12  "C:\\Documents and Settings\\Christopher\\My Documents\\SpyCorp\\SCI_Webpage.doc"
 END
-
-#endif    // English (U.S.) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-#ifndef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 3 resource.
-//
-
-
-/////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
-

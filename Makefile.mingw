@@ -1,0 +1,17 @@
+# MinGW -*- makefile -*- definitions.
+CROSS = i686-w64-mingw32-
+O = .o
+RCO = -rc.o
+ALLDEPS = $^
+CXX = $(CROSS)g++
+CXXOUT = -o
+WINDRES = $(CROSS)windres -O coff
+RESOUT = -o
+LINK = $(CROSS)g++
+LDOUT = -o
+CFLAGS =
+LDFLAGS = -mwindows -static-libgcc -static-libstdc++
+LIBS = -lwinmm
+RMF = rm -f
+
+include Makefile.in

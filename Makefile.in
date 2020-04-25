@@ -1,0 +1,21 @@
+all: webagr.exe
+
+webagr$(O): webagr.cpp
+	$(CXX) $(CFLAGS) -D _WINDOWS $(CXXOUT)$@ -c webagr.cpp
+
+webagr$(RCO): webagr.rc SCI_Logo.bmp SCI_Logo.ico
+	$(WINDRES) $(RESOUT)$@ webagr.rc
+
+webagr.exe: webagr$(O) webagr$(RCO)
+	$(LINK) $(LDFLAGS) $(LDOUT)$@ $(ALLDEPS) $(LIBS)
+
+mostlyclean:
+	$(RMF) webagr$(O)
+	$(RMF) webagr$(RCO)
+	# Clean up MSVC debugging files, etc.
+	$(RMF) *.pdb
+	$(RMF) *.ilk
+	$(RMF) *.idb
+
+clean: mostlyclean
+	$(RMF) webagr.exe

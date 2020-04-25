@@ -1,0 +1,17 @@
+# MSVC -*- makefile -*- definitions.
+O = .obj
+RCO = .res
+ALLDEPS = $**
+CXX = cl
+CXXOUT = -Fo
+WINDRES = rc -r
+RESOUT = -fo
+LINK = link
+LDOUT = -out:
+CFLAGS = -nologo -GX
+LDFLAGS = -nologo -subsystem:windows
+GUILIBS = kernel32.lib user32.lib gdi32.lib shell32.lib
+LIBS = $(GUILIBS) winmmm.lib
+RMF = del
+
+!include "Makefile.in"
