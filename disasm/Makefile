@@ -1,4 +1,4 @@
-CROSS_HOST = i586-mingw32msvc-
+CROSS_HOST = i686-w64-mingw32-
 CROSS_BUILD =
 CC = cc
 X =
