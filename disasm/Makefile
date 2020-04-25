@@ -59,7 +59,7 @@ acalls.txt: calls.txt
 	cut '-d:' -f2 calls.txt | sort | uniq >acalls.txt
 
 clean:
-	rm -f webagr.s idata.txt idata.bin rdata.bin webagr.res32 \
-	  c_str.txt \
+	rm -f webagr.s idata.txt idata.bin imports.txt \
+	  rdata.bin c_str.txt webagr.res32 \
 	  gthunk$(X) res32cnv$(X) imap.txt webagr.res \
 	  cnvfuncs.sh fnwebagr.s calls.txt acalls.txt
