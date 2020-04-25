@@ -11,7 +11,7 @@ LDOUT = -out:
 CFLAGS = -nologo -GX
 LDFLAGS = -nologo -subsystem:windows
 GUILIBS = kernel32.lib user32.lib gdi32.lib shell32.lib
-LIBS = $(GUILIBS) winmmm.lib
+LIBS = $(GUILIBS) winmm.lib
 RMF = del
 
 !include "Makefile.in"

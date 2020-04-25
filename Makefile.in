@@ -12,7 +12,7 @@ webagr.exe: webagr$(O) webagr$(RCO)
 mostlyclean:
 	$(RMF) webagr$(O)
 	$(RMF) webagr$(RCO)
-	# Clean up MSVC debugging files, etc.
+# Clean up MSVC debugging files, etc.
 	$(RMF) *.pdb
 	$(RMF) *.ilk
 	$(RMF) *.idb

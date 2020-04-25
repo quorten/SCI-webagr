@@ -29,10 +29,10 @@ Building
 The latest version is built using a Makefile, use `Makefile.mingw` for
 compiling with MinGW, `Makefile.msvc` for compiling with MSVC.  The
 MinGW Makefile supports cross-compiling, setup the CROSS variable
-accordingly.  MinGW GCC 3.x is recommended for most compact code
-generation.  Newer versions will still work, just that they'll copy
-more unused boilerplate `libc` and `libgcc` initialization code in by
-default.
+according to the toolchain prefix.  MinGW GCC 3.x is recommended for
+the most compact code generation.  Newer versions will still work, but
+they'll copy more unused boilerplate `libc` and `libgcc`
+initialization code in by default.
 
 The historic versions are all built based off of MSVC 6 project files.
 To compile with MinGW, you can use the modern Makefile there too, with
