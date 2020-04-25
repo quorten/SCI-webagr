@@ -1,0 +1,15 @@
+Global variable memory map.
+
+numRestarts = 0x428d50
+stage       = 0x428d54
+timeLeft    = 0x428d58
+strTable    = 0x4299e0
+hwndDecline = 0x429aa0
+hwndAccept  = 0x429aa4
+hwndText    = 0x429aa8
+hDCMem      = 0x429aac
+hFont       = 0x429ab0
+
+So I'm seeing evidence of reordering compared to function ordering.
+That means these are all global variables, not static variables in
+functions.
